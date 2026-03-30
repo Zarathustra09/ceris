@@ -6,6 +6,57 @@
 @source '../**/*.js';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+@plugin "daisyui";
+
+@plugin "daisyui/theme" {
+    name: "light";
+    default: true;
+    prefersdark: false;
+    color-scheme: "light";
+
+    /* ─── Base surfaces ─── */
+    --color-base-100: oklch(100% 0 0);           /* pure white */
+    --color-base-200: oklch(96.5% 0.008 128);    /* very light lime tint */
+    --color-base-300: oklch(91% 0.015 128);      /* light lime gray */
+    --color-base-content: oklch(22% 0.02 145);   /* near-black with green tint */
+
+    /* ─── Primary: Logo lime-green #8DC63F ─── */
+    --color-primary: oklch(76% 0.18 128);
+    --color-primary-content: oklch(100% 0 0);    /* white text on primary */
+
+    /* ─── Secondary: Logo dark bamboo-green #2E7D52 ─── */
+    --color-secondary: oklch(50% 0.13 152);
+    --color-secondary-content: oklch(100% 0 0);  /* white text on secondary */
+
+    /* ─── Accent: Mid sage green ─── */
+    --color-accent: oklch(65% 0.15 140);
+    --color-accent-content: oklch(100% 0 0);
+
+    /* ─── Neutral ─── */
+    --color-neutral: oklch(28% 0.025 148);
+    --color-neutral-content: oklch(97% 0 0);
+
+    /* ─── Semantic ─── */
+    --color-info: oklch(68% 0.14 240);
+    --color-info-content: oklch(97% 0 0);
+    --color-success: oklch(72% 0.16 152);
+    --color-success-content: oklch(97% 0 0);
+    --color-warning: oklch(76% 0.17 72);
+    --color-warning-content: oklch(25% 0.05 72);
+    --color-error: oklch(65% 0.2 20);
+    --color-error-content: oklch(97% 0 0);
+
+    /* ─── Shape ─── */
+    --radius-selector: 0.5rem;
+    --radius-field: 0.75rem;
+    --radius-box: 0.75rem;
+    --size-selector: 0.25rem;
+    --size-field: 0.25rem;
+    --border: 1px;
+    --depth: 0;
+    --noise: 0;
 }
