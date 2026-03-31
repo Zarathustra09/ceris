@@ -485,7 +485,7 @@
                         Create an Account
                     </motion.a>
                     <motion.a
-                        href="#contact"
+                        href="/contact"
                         :whileHover="{ scale: 1.04, y: -2 }"
                         :whileTap="{ scale: 0.97 }"
                         class="px-7 py-3 border-2 border-white/30 text-white font-semibold rounded-2xl text-sm hover:border-white/60 transition-colors"
@@ -505,10 +505,10 @@ import { reactive } from 'vue'
 import { motion } from 'motion-v'
 import FadeIn from '@/components/FadeIn.vue'
 import App from '@/Pages/layouts/App.vue'
+import { logoUrl } from '@/constants/branding'
 
 // ── Data ──────────────────────────────────────────────
 
-const logoUrl = '/images/ceris-logo.jpg'
 
 const heroStats = [
     { value: '1,240+', label: 'Registered homes' },

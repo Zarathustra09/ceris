@@ -94,8 +94,9 @@
 </template>
 
 <script setup>
+import { logoUrl } from '@/constants/branding'
+
 const year = new Date().getFullYear()
-const logoUrl = '/images/ceris-logo.jpg'
 
 const socials = [
     {
@@ -118,8 +119,8 @@ const socials = [
 const quickLinks = [
     { href: '#announcements', label: 'Announcements'    },
     { href: '#amenities',     label: 'Amenities'        },
-    { href: '#board',         label: 'Board & Governance' },
-    { href: '#contact',       label: 'Contact Us'       },
+    { href: '/board-and-governance', label: 'Board & Governance' },
+    { href: '/contact',       label: 'Contact Us'       },
 ]
 
 const residentLinks = [

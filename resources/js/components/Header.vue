@@ -130,13 +130,13 @@
 <script setup>
 import { ref } from 'vue'
 import { motion } from 'motion-v'
+import { logoUrl } from '@/constants/branding'
 
 const open = ref(false)
-const logoUrl = '/images/ceris-logo.jpg'
 const navLinks = [
     { href: '#announcements', label: 'Announcements'    },
     { href: '#amenities',     label: 'Amenities'        },
-    { href: '#board',         label: 'Board & Governance' },
-    { href: '#contact',       label: 'Contact'          },
+    { href: '/board-and-governance', label: 'Board & Governance' },
+    { href: '/contact',       label: 'Contact'          },
 ]
 </script>
