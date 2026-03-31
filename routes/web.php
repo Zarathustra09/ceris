@@ -31,3 +31,9 @@ Route::get('/contact', function(){
     return Inertia::render('guest/Contact');
 });
 
+Route::get('/dashboard', function(){
+    return Inertia::render('Dashboard');
+});
+
+Route::redirect('/home', '/dashboard');
+

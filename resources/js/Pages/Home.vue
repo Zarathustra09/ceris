@@ -504,7 +504,7 @@
 import { reactive } from 'vue'
 import { motion } from 'motion-v'
 import FadeIn from '@/components/FadeIn.vue'
-import App from '@/Pages/layouts/App.vue'
+import App from '@/Pages/layouts/guest/App.vue'
 import { logoUrl } from '@/constants/branding'
 
 // ── Data ──────────────────────────────────────────────
