@@ -7,7 +7,7 @@
 
                 <!-- Brand -->
                 <div class="md:col-span-4">
-                    <a href="/public" class="flex items-center gap-3 mb-5 w-fit group">
+                    <a href="/" class="flex items-center gap-3 mb-5 w-fit group">
                         <div class="w-12 h-12 rounded-2xl overflow-hidden shadow-md border border-primary/20 group-hover:shadow-lg transition-shadow bg-base-100 p-1">
                             <img :src="logoUrl" alt="CERIS" class="w-full h-full object-contain" />
                         </div>
@@ -84,9 +84,9 @@
                     © {{ year }} CERIS Homeowners Association Inc. All rights reserved.
                 </p>
                 <div class="flex gap-5">
-                    <a href="/privacy" class="text-xs text-base-content/35 hover:text-primary transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-xs text-base-content/35 hover:text-primary transition-colors">Privacy Policy</a>
                     <span class="text-base-content/20 text-xs select-none">·</span>
-                    <a href="/terms"   class="text-xs text-base-content/35 hover:text-primary transition-colors">Terms of Use</a>
+                    <a href="#" class="text-xs text-base-content/35 hover:text-primary transition-colors">Terms of Use</a>
                 </div>
             </div>
         </div>
@@ -117,18 +117,18 @@ const socials = [
 ]
 
 const quickLinks = [
-    { href: '#announcements', label: 'Announcements'    },
-    { href: '#amenities',     label: 'Amenities'        },
+    { href: '/announcements', label: 'Announcements'    },
+    { href: '/amenities',     label: 'Amenities'        },
     { href: '/board-and-governance', label: 'Board & Governance' },
     { href: '/contact',       label: 'Contact Us'       },
 ]
 
 const residentLinks = [
-    { href: '/login',     label: 'Resident Portal' },
-    { href: '/dues',      label: 'Pay Dues'         },
-    { href: '/documents', label: 'Documents & Forms' },
-    { href: '/reports',   label: 'Submit a Concern'  },
-    { href: '/directory', label: 'Community Directory' },
+    { href: '/login', label: 'Resident Portal' },
+    { href: '#', label: 'Pay Dues' },
+    { href: '#', label: 'Documents & Forms' },
+    { href: '#', label: 'Submit a Concern' },
+    { href: '#', label: 'Community Directory' },
 ]
 
 const contactDetails = [

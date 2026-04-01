@@ -1,4 +1,5 @@
 <template>
+    <App>
   <div class="overflow-x-hidden">
 
     <!-- Hero -->
@@ -496,12 +497,14 @@
       </Transition>
     </Teleport>
   </div>
+    </App>
 </template>
 
 <script setup>
 import { computed, ref, watch } from 'vue'
 import { motion } from 'motion-v'
 import FadeIn from '@/components/FadeIn.vue'
+import App from '@/Pages/layouts/guest/App.vue'
 
 const modalOpen = ref(false)
 const activeAmenity = ref(null)

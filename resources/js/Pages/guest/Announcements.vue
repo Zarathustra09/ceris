@@ -1,4 +1,5 @@
 <template>
+    <App>
   <div class="overflow-x-hidden">
     <section class="relative overflow-hidden bg-base-100 py-20 lg:py-28">
       <div class="absolute inset-0 bg-gradient-to-br from-primary/6 via-base-100 to-secondary/8 pointer-events-none"></div>
@@ -412,12 +413,14 @@
       </Transition>
     </Teleport>
   </div>
+    </App>
 </template>
 
 <script setup>
 import { computed, onBeforeUnmount, ref, watch } from 'vue'
 import { motion } from 'motion-v'
 import FadeIn from '@/components/FadeIn.vue'
+import App from '@/Pages/layouts/guest/App.vue'
 
 const modalOpen = ref(false)
 const activeAnnouncement = ref(null)

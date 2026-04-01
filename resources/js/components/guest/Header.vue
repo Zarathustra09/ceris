@@ -9,7 +9,7 @@
             style="letter-spacing: 0.015em;"
         >
             🌿&nbsp; Q2 Association Dues deadline:&nbsp;<strong>April 30, 2025</strong>
-            <a href="/dues" class="ml-2 underline underline-offset-2 opacity-70 hover:opacity-100 transition-opacity">
+            <a href="/login" class="ml-2 underline underline-offset-2 opacity-70 hover:opacity-100 transition-opacity">
                 Pay via Resident Portal →
             </a>
         </motion.div>
@@ -25,7 +25,7 @@
             <div class="max-w-7xl mx-auto px-5 sm:px-8 h-[4.5rem] flex items-center justify-between gap-6">
 
                 <!-- Logo -->
-                <a href="/public" class="flex items-center gap-3 shrink-0 group">
+                <a href="/" class="flex items-center gap-3 shrink-0 group">
                     <div class="w-11 h-11 rounded-2xl overflow-hidden shadow-md group-hover:shadow-lg transition-shadow duration-200 border border-primary/20 bg-base-100 p-1">
                         <img :src="logoUrl" alt="CERIS HOA" class="w-full h-full object-contain" />
                     </div>
@@ -134,8 +134,8 @@ import { logoUrl } from '@/constants/branding'
 
 const open = ref(false)
 const navLinks = [
-    { href: '#announcements', label: 'Announcements'    },
-    { href: '#amenities',     label: 'Amenities'        },
+    { href: '/announcements', label: 'Announcements'    },
+    { href: '/amenities',     label: 'Amenities'        },
     { href: '/board-and-governance', label: 'Board & Governance' },
     { href: '/contact',       label: 'Contact'          },
 ]
