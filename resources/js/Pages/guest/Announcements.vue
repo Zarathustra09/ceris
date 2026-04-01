@@ -148,6 +148,17 @@
           <div class="xl:col-span-3">
             <FadeIn v-if="featuredAnnouncement">
               <article class="card bg-gradient-to-br from-primary/8 to-secondary/10 border border-primary/20 rounded-3xl overflow-hidden">
+                <picture class="block aspect-[16/9] sm:aspect-[16/8] overflow-hidden">
+                  <source type="image/avif" :srcset="featuredAnnouncement.image.avif" sizes="(min-width: 1280px) 60vw, 100vw" />
+                  <source type="image/webp" :srcset="featuredAnnouncement.image.webp" sizes="(min-width: 1280px) 60vw, 100vw" />
+                  <img
+                    :src="featuredAnnouncement.image.fallback"
+                    :alt="featuredAnnouncement.alt"
+                    loading="lazy"
+                    class="w-full h-full object-cover"
+                  />
+                </picture>
+
                 <div class="card-body p-7 sm:p-8">
                   <div class="flex flex-wrap items-center gap-2 mb-3">
                     <span class="badge badge-sm rounded-full font-semibold" :class="badgeClass(featuredAnnouncement.category)">
@@ -201,9 +212,16 @@
             <div v-if="paginatedAnnouncements.length" class="space-y-5">
               <FadeIn v-for="(post, index) in paginatedAnnouncements" :key="post.id" :delay="index * 0.06">
                 <article
-                  class="card bg-base-100 border border-base-200 rounded-2xl hover:border-primary/30 hover:shadow-md transition-all duration-200"
+                  class="card bg-base-100 border border-base-200 rounded-2xl overflow-hidden hover:border-primary/30 hover:shadow-md transition-all duration-200"
                 >
-                  <div class="card-body p-6">
+                  <div class="grid grid-cols-1 md:grid-cols-[14rem_minmax(0,1fr)] gap-0">
+                    <picture class="block aspect-[4/3] md:aspect-auto md:h-full overflow-hidden bg-base-200/60">
+                      <source type="image/avif" :srcset="post.image.avif" sizes="(min-width: 1280px) 18vw, (min-width: 768px) 28vw, 100vw" />
+                      <source type="image/webp" :srcset="post.image.webp" sizes="(min-width: 1280px) 18vw, (min-width: 768px) 28vw, 100vw" />
+                      <img :src="post.image.fallback" :alt="post.alt" loading="lazy" class="w-full h-full object-cover" />
+                    </picture>
+
+                    <div class="card-body p-6">
                     <div class="flex flex-wrap items-center gap-2 mb-2">
                       <span class="badge badge-sm rounded-full font-semibold" :class="badgeClass(post.category)">{{ post.category }}</span>
                       <span class="text-[11px] text-base-content/40">{{ formatDate(post.isoDate) }}</span>
@@ -225,6 +243,7 @@
                       <p class="text-xs text-base-content/45">{{ post.author }} - {{ post.authorRole }}</p>
                       <button class="btn btn-ghost btn-sm rounded-xl text-primary" @click="openModal(post)">Open post</button>
                     </div>
+                  </div>
                   </div>
                 </article>
               </FadeIn>
@@ -310,8 +329,17 @@
                   <h3 class="text-xs font-bold uppercase tracking-[0.15em] text-primary mb-4">Upcoming Dates</h3>
                   <ul class="space-y-3">
                     <li v-for="post in upcomingPosts" :key="post.id" class="rounded-xl border border-base-200 p-3">
-                      <p class="text-[11px] text-base-content/40 mb-1">{{ formatDate(post.isoDate) }}</p>
-                      <p class="text-xs font-semibold text-base-content leading-relaxed">{{ post.title }}</p>
+                      <div class="flex items-start gap-3">
+                        <picture class="block w-16 h-16 rounded-xl overflow-hidden shrink-0 bg-base-200/60">
+                          <source type="image/avif" :srcset="post.image.avif" sizes="64px" />
+                          <source type="image/webp" :srcset="post.image.webp" sizes="64px" />
+                          <img :src="post.image.fallback" :alt="post.alt" loading="lazy" class="w-full h-full object-cover" />
+                        </picture>
+                        <div>
+                          <p class="text-[11px] text-base-content/40 mb-1">{{ formatDate(post.isoDate) }}</p>
+                          <p class="text-xs font-semibold text-base-content leading-relaxed">{{ post.title }}</p>
+                        </div>
+                      </div>
                     </li>
                   </ul>
                 </div>
@@ -328,8 +356,17 @@
                         class="w-full text-left rounded-xl border border-base-200 p-3 hover:border-primary/30 transition-all duration-200"
                         @click="openModal(post)"
                       >
-                        <p class="text-[10px] text-base-content/40 mb-1">{{ post.category }}</p>
-                        <p class="text-xs font-semibold text-base-content leading-relaxed">{{ post.title }}</p>
+                        <div class="flex items-start gap-3">
+                          <picture class="block w-14 h-14 rounded-xl overflow-hidden shrink-0 bg-base-200/60">
+                            <source type="image/avif" :srcset="post.image.avif" sizes="56px" />
+                            <source type="image/webp" :srcset="post.image.webp" sizes="56px" />
+                            <img :src="post.image.fallback" :alt="post.alt" loading="lazy" class="w-full h-full object-cover" />
+                          </picture>
+                          <div>
+                            <p class="text-[10px] text-base-content/40 mb-1">{{ post.category }}</p>
+                            <p class="text-xs font-semibold text-base-content leading-relaxed">{{ post.title }}</p>
+                          </div>
+                        </div>
                       </button>
                     </li>
                   </ul>
@@ -385,6 +422,12 @@
               </div>
 
               <div class="px-7 pt-6 pb-8">
+                <picture class="block rounded-3xl overflow-hidden mb-6 aspect-[16/9] bg-base-200/60">
+                  <source type="image/avif" :srcset="activeAnnouncement.image.avif" sizes="(min-width: 640px) 70vw, 100vw" />
+                  <source type="image/webp" :srcset="activeAnnouncement.image.webp" sizes="(min-width: 640px) 70vw, 100vw" />
+                  <img :src="activeAnnouncement.image.fallback" :alt="activeAnnouncement.alt" loading="lazy" class="w-full h-full object-cover" />
+                </picture>
+
                 <h2 class="text-2xl font-bold text-base-content tracking-tight leading-snug mb-3" style="font-family:'Instrument Sans',sans-serif;">
                   {{ activeAnnouncement.title }}
                 </h2>
@@ -419,7 +462,7 @@
 <script setup>
 import { computed, onBeforeUnmount, ref, watch } from 'vue'
 import { motion } from 'motion-v'
-import FadeIn from '@/components/FadeIn.vue'
+import FadeIn from '@/components/Fadein.vue'
 import App from '@/Pages/layouts/guest/App.vue'
 
 const modalOpen = ref(false)
@@ -435,6 +478,16 @@ const viewedMonth = ref(new Date(2026, 2, 1))
 const selectedDateKey = ref('')
 
 const weekdays = ['S', 'M', 'T', 'W', 'T', 'F', 'S']
+
+const buildAnnouncementImage = id => ({
+  avif: [480, 768, 1200]
+    .map(width => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=80&fm=avif ${width}w`)
+    .join(','),
+  webp: [480, 768, 1200]
+    .map(width => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=80&fm=webp ${width}w`)
+    .join(','),
+  fallback: `https://images.unsplash.com/${id}?auto=format&fit=crop&w=1200&q=80`,
+})
 
 const categories = [
   { value: 'all', label: 'All categories' },
@@ -455,7 +508,9 @@ const allAnnouncements = ref([
     authorRole: 'HOA President',
     pinned: true,
     title: 'Road Reblocking Phase 2 Starts April 5',
+    alt: 'Subdivision roadworks underway with lane barriers and construction equipment',
     excerpt: 'Work shifts to Sampaguita and Rosal Streets. Residents should expect lane narrowing during peak hours and use alternate access when possible.',
+    image: buildAnnouncementImage('photo-1504307651254-35680f356dfd'),
     body: [
       'Phase 2 of the subdivision road reblocking will begin on April 5 and is expected to run through the end of the month.',
       'Traffic marshals will be stationed at the affected intersections from 7:00 AM to 9:00 AM and from 5:00 PM to 7:00 PM.',
@@ -472,7 +527,9 @@ const allAnnouncements = ref([
     authorRole: 'Vice President',
     pinned: false,
     title: 'Foundation Day Program and Booth Schedule',
+    alt: 'Festive community event setup with booths, lights, and residents gathering outdoors',
     excerpt: 'The community celebration program is now final, including family games, food stalls, and evening performances at the clubhouse grounds.',
+    image: buildAnnouncementImage('photo-1511578314322-379afb476865'),
     body: [
       'The Foundation Day opening ceremony starts at 3:00 PM with household roll call and parade staging.',
       'Food and activity booths will operate from 2:00 PM to 8:00 PM with staggered discounts by block schedule.',
@@ -489,7 +546,9 @@ const allAnnouncements = ref([
     authorRole: 'Secretary',
     pinned: false,
     title: 'Q2 Dues Deadline and Payment Channels',
+    alt: 'Resident reviewing billing documents and digital payment options on a desk',
     excerpt: 'Settle your second-quarter association dues by April 30 to avoid monthly surcharge and keep amenity privileges active.',
+    image: buildAnnouncementImage('photo-1554224155-8d04cb21cd6c'),
     body: [
       'Residents may settle Q2 dues through the resident portal, bank transfer, or over-the-counter payment at the HOA office.',
       'Please submit your payment reference within 24 hours to help the accounting team validate balances faster.',
@@ -506,7 +565,9 @@ const allAnnouncements = ref([
     authorRole: 'Treasurer',
     pinned: false,
     title: 'Pool Closure for Cleaning and Water Treatment',
+    alt: 'Community swimming pool closed for cleaning and maintenance',
     excerpt: 'The community pool is closed from March 17 to March 19 for routine maintenance and sanitation checks.',
+    image: buildAnnouncementImage('photo-1519046904884-53103b34b206'),
     body: [
       'Routine maintenance includes deep cleaning, pump checks, and water quality balancing in compliance with health standards.',
       'The pool is scheduled to reopen on March 20 at 6:00 AM, subject to final sanitation clearance.',
@@ -522,7 +583,9 @@ const allAnnouncements = ref([
     authorRole: 'Auditor',
     pinned: false,
     title: 'Updated Gate Entry Protocol for Visitors',
+    alt: 'Subdivision gate with security personnel checking entry access',
     excerpt: 'All visitors must present valid identification and complete digital registration before entering the subdivision.',
+    image: buildAnnouncementImage('photo-1486406146926-c627a92ad1ab'),
     body: [
       'The guardhouse now requires ID presentation and host confirmation before issuing temporary visitor passes.',
       'Frequent visitors may pre-register through the resident portal to reduce waiting time during rush periods.',
@@ -539,7 +602,9 @@ const allAnnouncements = ref([
     authorRole: 'HOA President',
     pinned: false,
     title: 'Summer Sports Fest Team Registration Open',
+    alt: 'Sports event atmosphere with courts and active participants ready for a tournament',
     excerpt: 'Weekend tournaments will run throughout April. Household teams may register online or at the HOA office desk.',
+    image: buildAnnouncementImage('photo-1547347298-4074fc3086f0'),
     body: [
       'The Sports Fest includes basketball, badminton, table tennis, and relay events for junior and adult brackets.',
       'Slots are limited per block to keep match schedules balanced across weekends.',
@@ -556,7 +621,9 @@ const allAnnouncements = ref([
     authorRole: 'Secretary',
     pinned: false,
     title: 'Waste Segregation and Collection Window',
+    alt: 'Recycling and waste segregation bins arranged in an organized collection area',
     excerpt: 'Please follow biodegradable and non-biodegradable collection schedules to avoid missed pickup and penalties.',
+    image: buildAnnouncementImage('photo-1532996122724-e3c354a0b15b'),
     body: [
       'Biodegradable waste is collected every Monday and Thursday while non-biodegradable waste is collected Tuesday and Friday.',
       'Special and bulky waste pickup requires prior scheduling at least three days before your preferred date.',
@@ -573,7 +640,9 @@ const allAnnouncements = ref([
     authorRole: 'Auditor',
     pinned: false,
     title: 'Fire Safety Drill Procedure for Households',
+    alt: 'Residents participating in a community emergency or safety drill',
     excerpt: 'The annual drill is scheduled at the clubhouse. Assembly rules and evacuation routes are now posted per block.',
+    image: buildAnnouncementImage('photo-1517048676732-d65bc937f952'),
     body: [
       'Alarm testing begins at 8:45 AM, followed by a full evacuation simulation at 9:00 AM.',
       'Residents should proceed to assigned assembly points and wait for block marshals before returning home.',
@@ -590,7 +659,9 @@ const allAnnouncements = ref([
     authorRole: 'Secretary',
     pinned: false,
     title: 'Annual General Assembly Invitation',
+    alt: 'Community assembly or meeting hall arranged for a formal homeowners gathering',
     excerpt: 'Join us on February 15 for the Annual General Assembly. Important updates and elections will be held.',
+    image: buildAnnouncementImage('photo-1517502884422-41eaead166d4'),
     body: [
       'The Annual General Assembly (AGA) of the CERIS Homeowners Association is scheduled for February 15, 2026, at 4:00 PM.',
       'Venue: CERIS Clubhouse Function Hall.',
@@ -607,7 +678,9 @@ const allAnnouncements = ref([
     authorRole: 'Vice President',
     pinned: false,
     title: "Valentine's Day Special: Couple's Cook-off",
+    alt: 'Cooking event with plated food and a festive communal atmosphere',
     excerpt: 'Celebrate love and culinary skills! Join the cook-off on February 14. Prizes await the winning couple.',
+    image: buildAnnouncementImage('photo-1556910103-1c02745aae4d'),
     body: [
       'The CERIS HOA is hosting a Valentine\'s Day Couple\'s Cook-off on February 14, 2026, at the Clubhouse.',
       'Registration fee: ₱250 per couple. Inclusive of ingredients and a special gift pack.',
@@ -624,7 +697,9 @@ const allAnnouncements = ref([
     authorRole: 'Treasurer',
     pinned: false,
     title: 'Water Service Interruption: January 18',
+    alt: 'Close-up of water service and plumbing infrastructure used for repair work',
     excerpt: 'MAYNILAD will conduct emergency repairs on January 18, affecting water supply from 8 AM to 5 PM.',
+    image: buildAnnouncementImage('photo-1585704032915-c3400ca199e7'),
     body: [
       'Please be informed that there will be a water service interruption on January 18, 2026, from 8:00 AM to 5:00 PM.',
       'This is to facilitate emergency repairs by MAYNILAD Water Services. We apologize for the inconvenience.',
